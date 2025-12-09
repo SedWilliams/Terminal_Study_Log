@@ -26,11 +26,17 @@ Note: Program uses system date/time. Please ensure your system date/time is curr
 * test based development
     * OOP is harder to write testable code in versus functional
 * Safe usage of VCS
+* Was reminded very quickly I know nothing about anything, and neither does anyone else.
+    * Don't go into any project or learning endeavor thinking you know everything.
+    * There is always more to learn, and more efficient/better ways to do things.
+    * That does not mean you aren't capable or smart, it is just a part of being human. So don't be discouraged but go into every project with the mindset of what learning oppotunities are available.
 
 ## Problems encountered
 
 * Handling terminal input/output in Rust
     * The enter keypress when I entered the cargo run command persisted and ruined my input collection.
+    * Parsing terminal input without blocking the main thread.
+* Serializing/deserializing data with serde
 
 ## Future Improvements
 
