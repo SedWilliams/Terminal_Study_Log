@@ -1,3 +1,10 @@
+
+/****
+ * src
+ *   - types
+ *     - time_log.rs
+ */
+
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct TimeLog {
     pub id: u32,
