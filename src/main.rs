@@ -1,5 +1,7 @@
-use rust_study_timer::*;
 use crossterm::{event::{read, Event, KeyCode}, terminal};
+
+mod lib;
+mod types;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
@@ -24,7 +26,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             match event.code {
                 KeyCode::Char('y') | KeyCode::Char('Y') => {
                     println!("Starting study timer...");
-                    timer();
+                    lib::timer();
                     break;
                 }
                 KeyCode::Char('n') | KeyCode::Char('N') => {

@@ -6,7 +6,6 @@ use rand::prelude::*;
 use chrono::Local;
 use crossterm::{event, event::Event, event::KeyCode, terminal};
 
-mod types;
 use crate::types::TimeLog;
 
 fn generate_id() -> u32 {
@@ -21,7 +20,8 @@ pub fn update_time_log(session_details: &TimeLog) {
         .unwrap()
         .display()
         .to_string();
-
+    
+    //Handles time_log.txt file appending and existence checking
     match exists(format!("{cwd}/time_log.txt")) {
         Ok(true) => {
             println!("Time log file exists. Appending new entry...");
