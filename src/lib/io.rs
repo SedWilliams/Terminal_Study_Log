@@ -1,3 +1,5 @@
+use crossterm::{event::{read, Event, KeyCode}, terminal};
+
 /*****************************************************
  * Program IO functions
  *****************************************************/
@@ -6,9 +8,29 @@
  * INPUT (handling) FUNCTIONS
  *****************************************************/
 
-//blocking wait for yes/no input
-pub fn get_yes_no() -> &str {
-    unimplemented!();
+//blocking wait for yes/no input -> return owned string
+pub fn get_yes_no() -> String {
+    loop {
+        terminal::enable_raw_mode().expect("Failed to enable raw mode");
+
+        if let Event::Key(event) = read().expect("Failed to read event") {
+            match event.code {
+                KeyCode::Char('y') | KeyCode::Char('Y') => {
+                    terminal::disable_raw_mode().expect("Failed to disable raw mode");
+                    return String::from("y");
+                }
+                KeyCode::Char('n') | KeyCode::Char('N') => {
+                    terminal::disable_raw_mode().expect("Failed to disable raw mode");
+                    return String::from("n");
+                }
+                _ => {
+                    continue;
+                }
+            }
+        }
+
+        terminal::disable_raw_mode().expect("Failed to disable raw mode");
+    }
 }
 
 //non-blocking wait for termination keypress
