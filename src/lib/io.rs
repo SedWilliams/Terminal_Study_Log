@@ -2,10 +2,19 @@
  * Program IO functions
  *****************************************************/
 
-
 /*****************************************************
  * INPUT (handling) FUNCTIONS
  *****************************************************/
+
+//blocking wait for yes/no input
+pub fn get_yes_no() -> &str {
+    unimplemented!();
+}
+
+//non-blocking wait for termination keypress
+pub fn await_terminate() {
+    unimplemented!();
+}
 
 /*****************************************************
  * OUTPUT FUNCTIONS

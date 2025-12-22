@@ -3,21 +3,10 @@ use crossterm::{event::{read, Event, KeyCode}, terminal};
 mod lib;
 mod types;
 
+// program entry point
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-
-    terminal::SetTitle("Terminal Study Timer");
-
-    //append_to_file();
     
     lib::io::program_welcome();
-
-    // println!("--------------------------");
-    // println!("Terminal Study Timer...");
-    // println!("--------------------------");
-    // println!("");
-    // println!("Would you like to start a study timer? (y/n)...");
-
-    //println!("{}", Local::now().format("%Y-%m-%d"));
 
     //match input to handle yes/no response for starting the timer
     loop {
