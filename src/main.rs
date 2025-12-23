@@ -1,19 +1,18 @@
-mod logic;
-mod types;
+use rust_study_timer::util;
 
 // program entry point
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     
-    logic::io::program_welcome();
+    util::io::program_welcome();
     
     //parse a yes or no response, else display exit message
-    let response = logic::io::get_yes_no();
+    let response = util::io::get_yes_no();
 
     if response == "y" {
         println!("Starting study timer...");
-        logic::timer();
+        util::timer();
     } else {
-        logic::io::exit_message();
+        util::io::exit_message();
     }
 
     Ok(())

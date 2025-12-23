@@ -1,5 +1,8 @@
 pub mod io;
 
+pub mod types;
+use types::TimeLog;
+
 use std::time;
 use std::fs::{exists, OpenOptions, File};
 use std::io::Write;
@@ -7,8 +10,6 @@ use std::io::Write;
 use rand::prelude::*;
 use chrono::Local;
 use crossterm::{event, event::Event, event::KeyCode, terminal};
-
-use crate::types::TimeLog;
 
 fn generate_id() -> u32 {
     let mut rng = rand::rng();
