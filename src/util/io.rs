@@ -8,8 +8,18 @@ use crossterm::{event::{read, Event, KeyCode}, terminal};
  * INPUT (handling) FUNCTIONS
  *****************************************************/
 
-//blocking wait for yes/no input -> return owned string
-pub fn get_yes_no() -> String {
+//handle yes_no()
+//
+//Params:
+//      callback function
+//      yes or no string (pass ownership)
+//
+//if yes -> callback()
+//if no -> terminate prgm
+
+pub fn handle_yes_no(cb: fn()) {
+    
+    //wait for yes/no keypress
     terminal::enable_raw_mode().expect("Failed to enable raw mode");
     let result = loop {
         if let Event::Key(event) = read().expect("Failed to read event") {
@@ -27,7 +37,14 @@ pub fn get_yes_no() -> String {
         }
     };
     terminal::disable_raw_mode().expect("Failed to disable raw mode");
-    result
+    
+    //handle results based on user input
+    if result == "y" {
+        println!("Starting timer...");
+        cb();
+    } else {
+        exit_message();
+    }
 }
 
 //non-blocking wait for termination keypress

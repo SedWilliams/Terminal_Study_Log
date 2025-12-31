@@ -26,6 +26,8 @@ pub fn update_time_log(session_details: &TimeLog) {
         .unwrap()
         .join("time_log.txt");
 
+    println!("Time log file path: {:?}", &time_log_txt_path);
+
     //Handles time_log.txt file appending and existence checking
     match exists(&time_log_txt_path) {
         Ok(true) => {
