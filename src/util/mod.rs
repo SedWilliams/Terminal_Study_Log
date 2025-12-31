@@ -3,19 +3,15 @@ pub mod io;
 pub mod types;
 use types::TimeLog;
 
+pub mod generate_id;
+
 use std::time;
 use std::fs::{exists, OpenOptions, File};
 use std::io::Write;
 use std::env;
 
-use rand::prelude::*;
 use chrono::Local;
 use crossterm::{event, event::Event, event::KeyCode, terminal};
-
-fn generate_id() -> u32 {
-    let mut rng = rand::rng();
-    rng.random_range(1000..9999)
-}
 
 //abstract file existence check into its own function
 pub fn update_time_log(session_details: &TimeLog) {
