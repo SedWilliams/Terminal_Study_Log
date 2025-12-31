@@ -4,6 +4,7 @@ pub mod types;
 use types::TimeLog;
 
 pub mod generate_id;
+use generate_id::generate_id;
 
 use std::time;
 use std::fs::{exists, OpenOptions, File};
