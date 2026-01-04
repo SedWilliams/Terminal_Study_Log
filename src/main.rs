@@ -28,7 +28,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         MoveTo(0, 0),
     )?;
 
-    util::io::program_welcome();
+    util::io::welcome_message();
 
     util::io::handle_yes_no(util::timer::timer);
 

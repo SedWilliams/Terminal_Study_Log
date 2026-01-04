@@ -55,10 +55,11 @@ pub fn handle_yes_no(callback: fn()) {
     
     //handle results based on user input
     if result == "y" {
-        println!("Starting timer...\r");
+        println!("\rStarting timer...\r");
         callback();
     } else {
         exit_message();
+        terminal::disable_raw_mode().expect("Failed to disable raw mode");
     }
 }
 
@@ -72,11 +73,11 @@ pub fn await_terminate() {
  *****************************************************/
 
 //welcome message, displays on program start
-pub fn program_welcome() {
+pub fn welcome_message() {
     println!("--------------------------");
-    println!("{}", " Terminal Study Timer...".blue().bold());
+    println!("| {}  |", " Terminal Study Timer".blue().bold());
     println!("--------------------------");
-    println!("Would you like to start a study timer? [y/n]...");
+    print!("Would you like to start a study timer? [y/n]...\n");
 }
 
 //exit msg, displays on program close

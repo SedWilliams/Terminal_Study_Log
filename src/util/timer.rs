@@ -30,6 +30,7 @@ pub fn timer() {
             if let Event::Key(key_event) = event::read().expect("Event read failed: line 26 lib.rs") {
                 if key_event.code == KeyCode::Char('q') {
                     println!("\rTimer stopped.");
+                    println!("");
                     break;
                 }
             }
