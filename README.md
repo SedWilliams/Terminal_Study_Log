@@ -21,7 +21,7 @@ Note: Program uses system date/time. Please ensure your system date/time is curr
 * terminal IO (Rust Specific)
 * file IO
 * chrono crate for date/time Handling
-* serde/serde_json crates for serialization/deserialization (JSON in this project)
+* serde/serde\_json crates for serialization/deserialization (JSON in this project)
 * crossterm crate for terminal manipulation and event handling
 * test based development
     * OOP is harder to write testable code in versus functional
@@ -30,23 +30,21 @@ Note: Program uses system date/time. Please ensure your system date/time is curr
     * Don't go into any project or learning endeavor thinking you know everything.
     * There is always more to learn, and more efficient/better ways to do things.
     * That does not mean you aren't capable or smart, it is just a part of being human. So don't be discouraged but go into every project with the mindset of what learning oppotunities are available.
+* Moduling in Rust
+* Safe/effective AI usage
 
 ## Problems encountered
 
 * Handling terminal input/output in Rust
-    * The enter keypress when I entered the cargo run command persisted and ruined my input collection.
-    * Parsing terminal input without blocking the main thread.
+    * The enter keypress when I entered the cargo run command persisted and ruined my input collection. Parsing terminal input without blocking the main thread.
+    * Proper terminal buffer handling
+    * Platform dependent terminal IO
+* Platform dependent storage
 * Serializing/deserializing data with serde
 
 ## Future Improvements
 
-* Once the basic functionality is complete I plan to add:
-    * Polish to the TUI
-    * Polish to underlying code
-    * Functionality to allow for adding past study sessions, or sessions tracked elsewhere.
-    * Functionality to visualize and format past study sessions from within the program.
-    * __Possibly__ Option to set custom study session length at runtime, and then implement sound cues for session end.
-    * Official Builds for UNIX and Windows
+Future improvements list was moved to ./DOCS/TODO.md
 
 ### There will never be a pause/resume function.
 I use this tool personally, and I base my own study system off of Deep Work principles laid out in the work of Cal Newport.
