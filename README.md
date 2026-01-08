@@ -17,7 +17,7 @@ At the core this is a simple terminal timer designed to time, and log, study ses
    * [Program Flow](DOCS/ARCHITECTURE.md#program-flow)
    * [Data Flow Diagram](DOCS/ARCHITECTURE.md#data-flow-diagram)
 2. [API Documentation](DOCS/API.md)
-    * Detailed breakdown of functions, structs, and modules.
+   * [Module by module breakdown](DOCS/API.md#api-documentation)
 3. [Module Structure](DOCS/MODULES.md)
     * Explanation of the file organization and source code layout.
 
