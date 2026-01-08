@@ -5,6 +5,14 @@ At the core this is a simple terminal timer designed to time, and log, study ses
 ## Table of Contents (Project wide)
 
 1. [README.md](README.md#terminal_study_log)
+2. [Overview of DOCS folder](DOCS/DOCS.md)
+3. [Architecture & Program Flow](DOCS/ARCHITECTURE.md)
+    *   High-level overview of how the application runs.
+    *   Flowcharts and logic description.
+2. [API Documentation](DOCS/API.md)
+    *   Detailed breakdown of functions, structs, and modules.
+3. [Module Structure](DOCS/MODULES.md)
+    *   Explanation of the file organization and source code layout.
 
 ## Usage
 
