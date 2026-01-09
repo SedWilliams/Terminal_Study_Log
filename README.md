@@ -63,7 +63,7 @@ Note: Program uses system date/time. Please ensure your system date/time is curr
 
 ## Future Improvements
 
-Future improvements list was moved to ./DOCS/TODO.md
+Future improvements list was moved to [./DOCS/TODO.md](DOCS/TODO.md)
 
 ### There will never be a pause/resume function.
 I use this tool personally, and I base my own study system off of Deep Work principles laid out in the work of Cal Newport.
