@@ -44,13 +44,13 @@ Note: Program uses system date/time. Please ensure your system date/time is curr
 * crossterm crate for terminal manipulation and event handling
 * test based development
     * OOP is harder to write testable code in versus functional
-* Safe usage of VCS
+* Safer usage of VCS
+* Moduling in Rust
+* Safer/more effective AI usage
 * Was reminded very quickly I know nothing about anything, and neither does anyone else.
     * Don't go into any project or learning endeavor thinking you know everything.
     * There is always more to learn, and more efficient/better ways to do things.
     * That does not mean you aren't capable or smart, it is just a part of being human. So don't be discouraged but go into every project with the mindset of what learning oppotunities are available.
-* Moduling in Rust
-* Safe/effective AI usage
 
 ## Problems encountered
 
