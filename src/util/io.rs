@@ -4,7 +4,6 @@
 use std::env;
 use std::fs::{exists, OpenOptions, File};
 use std::io::{self, Write};
-use std::error::Error;
 
 use super::types::{
     TimeLog,
