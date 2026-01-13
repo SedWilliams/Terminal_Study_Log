@@ -9,13 +9,13 @@ use rust_study_timer::util::types::UnitResult;
 
 // program entry point
 fn main() -> UnitResult {
-    
+
     //display welcome message and set terminal
     io::set_terminal()
         .expect(
             "Please run 'cargo fetch'"
         );
-    
+
     //handle user input for starting timer -> start timer if yes
     let result: String = io::await_yes_no()
         .unwrap_or_else(|error| {
