@@ -35,7 +35,8 @@ cargo run
 
 //or...
 cargo build
-//find the 'rust_study_timer' executable
+
+//then find and run the 'rust_study_timer' executable
 ./rust_study_timer
 ```
 
