@@ -1,6 +1,6 @@
-# Terminal Study Log
+# STUI Timer (Standard TUI Timer)
 
-This is a simple terminal timer designed to time and log study sessions.
+This is a simple timer designed to time and log study sessions, built in Rust as a command-line interface (CLI) tool.
 
 ## Table of Contents (Project wide, source of truth)
 
