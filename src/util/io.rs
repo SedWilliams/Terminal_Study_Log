@@ -62,6 +62,9 @@ pub fn handle_yes_no(result: String, callback: TimerCallback) -> UnitResult {
     Ok(())
 }
 
+#[cfg(test)]
+mod tests {}
+
 /*****************************************************
  * OUTPUT FUNCTIONS
  *****************************************************/
