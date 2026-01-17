@@ -2,11 +2,10 @@
  * Program IO functions
  *****************************************************/
 use std::env;
-use std::error::Error;
 use std::fs::{File, OpenOptions, exists};
 use std::io::{self, Write};
 
-use super::types::{StringResult, TimeLog, TimerCallback, UnitResult};
+use super::types::{EventReader, StringResult, TimeLog, TimerCallback, UnitResult};
 
 use crossterm::{
     cursor::*,
@@ -19,33 +18,6 @@ use crossterm::{
 /*****************************************************
  * INPUT (handling) FUNCTIONS
  *****************************************************/
-
-//handle yes_no()
-//
-//Params:
-//      callback function
-//      yes or no string (pass ownership)
-//
-//if yes -> callback()
-//if no -> terminate prgm
-
-pub trait EventReader {
-    fn read_event(&mut self) -> Result<Event, Box<dyn Error>>;
-}
-
-pub struct TerminalEventReader {}
-
-impl TerminalEventReader {
-    pub fn new() -> Self {
-        TerminalEventReader {}
-    }
-}
-
-impl EventReader for TerminalEventReader {
-    fn read_event(&mut self) -> Result<Event, Box<dyn Error>> {
-        Ok(read()?)
-    }
-}
 
 pub fn await_yes_no<R: EventReader>(reader: &mut R) -> StringResult {
     //wait for yes/no keypress and store result in 'result': String
@@ -64,6 +36,14 @@ pub fn await_yes_no<R: EventReader>(reader: &mut R) -> StringResult {
     Ok(result)
 }
 
+//handle yes_no()
+//
+//Params:
+//      callback function
+//      yes or no string (pass ownership)
+//
+//if yes -> callback()
+//if no -> terminate prgm
 pub fn handle_yes_no(result: String, callback: TimerCallback) -> UnitResult {
     if result == "y" {
         println!("");

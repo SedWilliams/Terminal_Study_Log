@@ -1,6 +1,6 @@
 use stui_timer::util::{
-    io::{EventReader, await_yes_no},
-    types::EventResult,
+    io::await_yes_no,
+    types::{EventReader, EventResult},
 };
 
 use crossterm::event::{Event, KeyCode, KeyEvent, KeyModifiers};

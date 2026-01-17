@@ -8,7 +8,7 @@ fn main() -> types::UnitResult {
     //display welcome message and set terminal
     io::set_terminal();
 
-    let mut terminal_event_reader = util::io::TerminalEventReader::new();
+    let mut terminal_event_reader = types::TerminalEventReader::new();
 
     //handle user input for starting timer -> start timer if yes
     let result: String =
@@ -24,7 +24,7 @@ fn main() -> types::UnitResult {
 
     util::io::blocking_await_keypress();
 
-    io::clear_terminal();
+    util::io::clear_terminal();
 
     Ok(())
 }
