@@ -7,6 +7,7 @@ use std::error::Error;
 //function return types
 pub type UnitResult = Result<(), Box<dyn Error>>;
 pub type StringResult = Result<String, Box<dyn Error>>;
+pub type EventResult = Result<crossterm::event::Event, Box<dyn Error>>;
 pub type TimerCallback = fn() -> Result<(), Box<dyn Error>>;
 
 //stored time log type
@@ -26,5 +27,22 @@ impl std::fmt::Display for TimeLog {
             "Session ID: {}\n\rTime Spent: {} hours, {} minutes, {} seconds\n\rDate: {}",
             self.id, self.time_spent[0], self.time_spent[1], self.time_spent[2], self.date
         )
+    }
+}
+
+pub trait EventReader {
+    fn read_event(&mut self) -> EventResult;
+}
+
+pub struct TerminalEventReader;
+
+impl TerminalEventReader {
+    pub fn new() -> Self {
+        TerminalEventReader
+    }
+}
+impl EventReader for TerminalEventReader {
+    fn read_event(&mut self) -> EventResult {
+        Ok(crossterm::event::read()?)
     }
 }
