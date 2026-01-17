@@ -2,6 +2,7 @@
  * Program IO functions
  *****************************************************/
 use std::env;
+use std::error::Error;
 use std::fs::{File, OpenOptions, exists};
 use std::io::{self, Write};
 
@@ -9,7 +10,7 @@ use super::types::{StringResult, TimeLog, TimerCallback, UnitResult};
 
 use crossterm::{
     cursor::*,
-    event::{Event, KeyCode, read},
+    event::{Event, KeyCode, KeyEventKind, read},
     execute,
     style::Stylize,
     terminal::*,
@@ -27,21 +28,34 @@ use crossterm::{
 //
 //if yes -> callback()
 //if no -> terminate prgm
-pub fn await_yes_no() -> StringResult {
+
+pub trait EventReader {
+    fn read_event(&mut self) -> Result<Event, Box<dyn Error>>;
+}
+
+pub struct TerminalEventReader {}
+
+impl TerminalEventReader {
+    pub fn new() -> TerminalEventReader {
+        TerminalEventReader {}
+    }
+}
+
+impl EventReader for TerminalEventReader {
+    fn read_event(&mut self) -> Result<Event, Box<dyn Error>> {
+        let event = read()?;
+        Ok(event)
+    }
+}
+
+pub fn await_yes_no<R: EventReader>(reader: &mut R) -> StringResult {
     //wait for yes/no keypress and store result in 'result': String
     let result: String = loop {
-        if let Event::Key(key) = read()? {
+        if let Event::Key(key) = reader.read_event()? {
             match key.code {
-                KeyCode::Char('y') | KeyCode::Char('Y') => {
-                    //break String::from("y");
-                    break "y".into();
-                }
-                KeyCode::Char('n') | KeyCode::Char('N') => {
-                    break "n".into();
-                }
-                _ => {
-                    continue;
-                }
+                KeyCode::Char('y') | KeyCode::Char('Y') => break "y".into(),
+                KeyCode::Char('n') | KeyCode::Char('N') => break "n".into(),
+                _ => continue,
             }
         }
     };
@@ -121,6 +135,19 @@ pub fn spinner_animation() {
     unimplemented!();
 }
 
+pub fn blocking_await_keypress() {
+    //add silent, blocking, event read that waits for any keypress to continue
+    println!("\rPress any key to exit...\r");
+
+    loop {
+        if let Ok(Event::Key(key_event)) = read() {
+            if key_event.kind == KeyEventKind::Press {
+                break;
+            }
+        }
+    }
+}
+
 //updates time_log.txt with new session details
 pub fn update_time_log(session_details: &TimeLog) {
     //abstract file existence check into its own function
@@ -179,9 +206,5 @@ pub fn update_time_log(session_details: &TimeLog) {
     }
 
     //show the user the session details that were logged
-    println!("\r Logged: {}\n\r", &session_details);
-
-    //add silent, blocking, event read that waits for any keypress to continue
-    println!("\rPress any key to exit...\r");
-    let _ = read();
+    println!("\rLogged {}\n\r", &session_details);
 }
