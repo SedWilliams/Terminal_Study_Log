@@ -4,8 +4,8 @@
 
 use std::time;
 
-use crate::util::io::update_time_log;
 use crate::util::types::{TimeLog, UnitResult};
+use crate::util::update_time_log;
 
 use crossterm::{
     event::{self, Event, KeyCode},
