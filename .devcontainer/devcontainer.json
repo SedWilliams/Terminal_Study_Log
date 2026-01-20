@@ -12,7 +12,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"vscodevim.Vim"
+				"vscodevim.vim"
 			]
 		}
 	}
