@@ -1,39 +1,20 @@
 /*****************************************************
  * Program IO functions
  *****************************************************/
+
+pub mod event;
+
 use std::io::{self};
 
-use crate::util::types::{EventReader, StringResult, TimerCallback, UnitResult};
+use crate::util::types::{TimerCallback, UnitResult};
 
-use crossterm::{
-    cursor::*,
-    event::{Event, KeyCode, KeyEventKind, read},
-    execute,
-    style::Stylize,
-    terminal::*,
-};
+use crossterm::{execute, style::Stylize, terminal::*};
 
 /*****************************************************
  * INPUT (handling) FUNCTIONS
  *****************************************************/
 
-pub fn await_startup_choice<R: EventReader>(reader: &mut R) -> StringResult {
-    //wait for yes/no keypress and store result in 'result': String
-    let result: String = loop {
-        if let Event::Key(key) = reader.read_event()? {
-            match key.code {
-                //return owned string values
-                KeyCode::Char('s') | KeyCode::Char('S') => break "s".into(),
-                KeyCode::Char('q') | KeyCode::Char('Q') => break "q".into(),
-                KeyCode::Char('v') | KeyCode::Char('V') => break "v".into(),
-                _ => continue,
-            }
-        }
-    };
-
-    //pass ownership of result String back to caller
-    Ok(result)
-}
+pub use event::await_startup_choice;
 
 //handle yes_no()
 //
@@ -54,18 +35,7 @@ pub fn handle_startup_choice(result: String, callback: TimerCallback) -> UnitRes
     Ok(())
 }
 
-pub fn blocking_await_keypress() {
-    //add silent, blocking, event read that waits for any keypress to continue
-    println!("\rPress any key to exit...\r");
-
-    loop {
-        if let Ok(Event::Key(key_event)) = read() {
-            if key_event.kind == KeyEventKind::Press {
-                break;
-            }
-        }
-    }
-}
+pub use event::blocking_await_keypress;
 
 /*****************************************************
  * OUTPUT FUNCTIONS
@@ -85,9 +55,8 @@ pub fn exit_message() {
 }
 
 //sets up terminal for program use
-pub fn set_terminal() {
-    //if fails -> propogate error up
-
+pub fn set_terminal() -> ratatui::Terminal<ratatui::backend::CrosstermBackend<io::Stdout>> {
+    /*
     execute!(
         io::stdout(),
         SetTitle("Study Timer"),
@@ -103,8 +72,13 @@ pub fn set_terminal() {
     enable_raw_mode().unwrap_or_else(|error| {
         panic!("\n\rCrossterm error while enabling raw mode: {}. Please restart terminal and run 'cargo fetch' to install Crossterm.", error);
     });
+    */
+
+    let term_instance = ratatui::init();
 
     welcome_message();
+
+    term_instance
 }
 
 //clears terminal and resets to normal screen
