@@ -2,6 +2,7 @@
  * Program IO functions
  *****************************************************/
 use crate::util::types::{TimerCallback, UnitResult};
+use ui::bits::App;
 pub mod event;
 pub mod ui;
 
@@ -71,8 +72,7 @@ pub fn set_terminal() {
     });
     */
 
-    ratatui::init();
-
+    ratatui::run(|terminal| App::default().run(terminal)).unwrap();
     welcome_message();
 }
 
@@ -87,8 +87,6 @@ pub fn clear_terminal() {
         panic!("\n\rCrossterm error while disabling raw mode: {}. Please restart terminal and run 'cargo fetch' to install Crossterm.", error);
     });
     */
-
-    ratatui::restore();
 }
 
 //static spinner animation
