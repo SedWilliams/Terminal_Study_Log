@@ -18,6 +18,7 @@
     * handle startup options
       * ~~Handle start and quit~~
       * handle 'v' (visualizing past sessions)
+* Update docs post ratatui integration and refactoring etc...
 
 ## Future
 * Functionality to visualize and format past study sessions from within the program.
