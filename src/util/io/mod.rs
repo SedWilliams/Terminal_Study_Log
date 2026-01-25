@@ -2,7 +2,7 @@
  * Program IO functions
  *****************************************************/
 use crate::util::types::{TimerCallback, UnitResult};
-use ui::bits::App;
+use ui::app::App;
 pub mod event;
 pub mod ui;
 

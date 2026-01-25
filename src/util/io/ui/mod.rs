@@ -18,7 +18,8 @@ UPDATE:
 
 See bits/mod.rs for more info.
 */
-pub mod bits;
+pub mod app;
+pub mod layout;
 
 // Style definitions
 pub mod styles;

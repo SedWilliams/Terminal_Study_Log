@@ -1,8 +1,6 @@
-mod layout;
-
 use crossterm::event::{self, Event, KeyCode};
 use ratatui::prelude::*;
-use ratatui::widgets::{Block, Paragraph, Widget};
+use ratatui::widgets::{Block, Widget};
 use ratatui::{self, DefaultTerminal, Frame, layout::Constraint};
 use tui_big_text::{BigText, PixelSize};
 
