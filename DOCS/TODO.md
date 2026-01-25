@@ -8,16 +8,12 @@
 ## Current
 * Add test(s) for existing code
 * Feature: options_on_startup
-  * Write passing tests for....
-    * ~~await_yes_no()~~
-    * UI components
-    * ~~handle_yes_no()~~
-    * ~~Implement Dependency Inversion Principle/Dependency Injection~~
-  * ~~Write failing tests for options_on_startup~~
+    * ~~write failng test for UI~~
+    * develop UI
+    * ensure test passes
+    * push
   * Develop options_on_startup()
-    * ~~Give startup options~~
     * handle startup options
-      * ~~Handle start and quit~~
       * handle 'v' (visualizing past sessions)
 * Update docs post ratatui integration and refactoring etc...
 
