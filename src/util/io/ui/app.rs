@@ -1,8 +1,10 @@
-use crossterm::event::{self, Event, KeyCode};
 use ratatui::prelude::*;
 use ratatui::widgets::{Block, Widget};
 use ratatui::{self, DefaultTerminal, Frame, layout::Constraint};
 use tui_big_text::{BigText, PixelSize};
+
+use crate::util::io::await_startup_choice;
+use crate::util::types::TerminalEventReader;
 
 #[derive(Default)]
 pub struct App {
@@ -29,14 +31,19 @@ impl App {
     //called to take care of the event handling
     //      we will implement this with crossterm
     pub fn handle_events(&mut self) -> std::io::Result<()> {
-        if event::poll(std::time::Duration::from_millis(100))? {
-            if let Event::Key(keypress) = event::read()? {
-                match keypress.code {
-                    KeyCode::Char('q') => self.exit = true,
-                    _ => {}
-                }
-            }
+        let mut reader = TerminalEventReader::new();
+
+        let result = await_startup_choice(&mut reader).unwrap();
+
+        if &result == "q" {
+            self.exit = true;
+        } else if &result == "s" {
+            //start timer logic here
+            // turn timer into a stateful component
+        } else if &result == "v" {
+            //view logs logic here
         }
+
         Ok(())
     }
 }
@@ -70,7 +77,7 @@ impl Widget for &App {
             .build();
 
         let commands = Line::from(vec![
-            " Start<s> ".into(),
+            " Start/Stop<s> ".into(),
             "Quit<q> ".into(),
             "Logs<v> ".into(),
         ]);

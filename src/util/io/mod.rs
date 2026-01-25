@@ -73,7 +73,7 @@ pub fn set_terminal() {
     */
 
     ratatui::run(|terminal| App::default().run(terminal)).unwrap();
-    welcome_message();
+    //welcome_message();
 }
 
 //clears terminal and resets to normal screen
