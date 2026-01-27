@@ -13,11 +13,10 @@ pub struct Timer {
 impl Timer {
     pub fn new() -> Self {
         let initial_time = time::Instant::now();
-        let elapsed: time::Duration = initial_time.elapsed();
 
         Timer {
             start_time: initial_time,
-            elapsed,
+            elapsed: initial_time.elapsed(),
         }
     }
 

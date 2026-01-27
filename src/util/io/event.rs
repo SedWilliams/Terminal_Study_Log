@@ -7,7 +7,7 @@
 
 use crate::util::types::{EventReader, EventResult, StringResult};
 
-use crossterm::event::{Event, KeyCode, KeyEventKind};
+use crossterm::event::{self, Event, KeyCode, KeyEventKind};
 
 //Wait for a startup choice keypress and return it as a small string token.
 //      inject EventReader from types/event_reader.rs
@@ -40,6 +40,16 @@ pub fn blocking_await_keypress<R: EventReader>(reader: &mut R) -> EventResult {
                 return Ok(Event::Key(key_event));
             }
             _ => continue,
+        }
+    }
+}
+
+pub fn poll_event<R: EventReader>(reader: R) -> EventResult {
+    loop {
+        if poll(duration::from_millis(1000))? {
+            if let Event::key(key) = read()? {
+                Ok(Event::key());
+            }
         }
     }
 }
